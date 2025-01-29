@@ -40,6 +40,19 @@ public class CrearEditarPeliculas {
     public Button btnCancelar;
 
     public void inicializarFormulario(Pelicula pelicula) {
+        // Restringir txtAnio para que solo acepte números
+        txtAnio.setOnKeyTyped(event -> {
+            if (!event.getCharacter().matches("[0-9]")) {
+                event.consume(); // Bloquea la entrada del carácter no válido
+            }
+        });
+
+        // Evitar que se peguen caracteres no numéricos con Ctrl+V
+        txtAnio.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                txtAnio.setText(oldValue); // Revierte el cambio si hay caracteres no numéricos
+            }
+        });
         // Configuración inicial del título del stage y etiqueta
         titStage = (Stage) lblTituloWind.getScene().getWindow();
         if (pelicula != null) {
@@ -77,13 +90,6 @@ public class CrearEditarPeliculas {
             lblRating.setText(formatRating(newValue.doubleValue()));
         });
     }
-
-    /**
-     * Método para redondear y formatear el valor del rating con un solo decimal.
-     *
-     * @param value El valor original del slider.
-     * @return El valor formateado con un decimal como String.
-     */
     private String formatRating(double value) {
         double roundedValue = Math.round(value * 10.0) / 10.0;
         return String.format("%.1f", roundedValue);
@@ -91,6 +97,15 @@ public class CrearEditarPeliculas {
 
     @FXML
     public void agregarPelicula(ActionEvent event) {
+        if (!isValidURL(txtPoster.getText())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("URL no válida");
+            alert.setHeaderText("Error en la URL del póster");
+            alert.setContentText("Por favor, ingrese una URL válida.");
+            alert.showAndWait();
+            return; // No continúa si la URL no es válida
+        }
+
         if (pelicula == null) {
             lblTituloWind.setText("AÑADIR UNA PELICULA");
             // Crear una nueva película
@@ -136,5 +151,9 @@ public class CrearEditarPeliculas {
         // Cerrar la ventana actual
         titStage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
         titStage.close();
+    }
+    private boolean isValidURL(String url) {
+        String urlRegex = "^(https?|ftp)://[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}(:[0-9]{1,5})?(/.*)?$";
+        return url.matches(urlRegex);
     }
 }
