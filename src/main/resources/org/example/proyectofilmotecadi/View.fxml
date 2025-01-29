@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="885.0" stylesheets="@estilosFilmoteca.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyectofilmotecadi.Controlador">
+   <children>
+      <AnchorPane prefHeight="606.0" prefWidth="832.0">
+         <children>
+            <TableView fx:id="tableFilmoteca" layoutX="1.0" layoutY="84.0" prefHeight="474.0" prefWidth="442.0">
+              <columns>
+                <TableColumn fx:id="columID" prefWidth="37.60000538825989" text="ID" />
+                <TableColumn fx:id="columTitulo" prefWidth="155.20000839233398" text="Titulo" />
+                  <TableColumn fx:id="columAnio" prefWidth="72.79994201660156" text="Año" />
+                  <TableColumn fx:id="columDirector" prefWidth="172.800048828125" text="Director" />
+              </columns>
+            </TableView>
+
+            <ButtonBar layoutX="5.0" layoutY="559.0" prefHeight="40.0" prefWidth="434.0">
+               <buttons>
+                  <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#btnCrearPelicula" prefHeight="27.0" prefWidth="158.0" text="Nuevo" />
+                  <Button fx:id="btnMod" mnemonicParsing="false" onAction="#btnModificarPelicula" text="Editar" />
+                  <Button fx:id="btnDel" mnemonicParsing="false" onAction="#btnEliminarPelicula" prefHeight="26.0" prefWidth="137.0" text="Eliminar" />
+               </buttons>
+            </ButtonBar>
+            <Button fx:id="btnSalir" layoutX="769.0" layoutY="579.0" mnemonicParsing="false" onAction="#btnSalirApp" prefHeight="26.0" prefWidth="109.0" text="Salir" />
+            <Text fx:id="txtFilmoteca" layoutX="241.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="titulos" text="Datos Filmoteca" textAlignment="CENTER" wrappingWidth="408.225341796875">
+            </Text>
+            <VBox layoutX="445.0" layoutY="52.0" prefHeight="506.0" prefWidth="434.0" styleClass="fondo">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Label fx:id="lblTitTxt" styleClass="titSecundarios" text="Titulo:" />
+                  <Label fx:id="lblTit" prefHeight="18.0" prefWidth="372.0" styleClass="descripcion">
+                  </Label>
+                  <Label fx:id="lblanioTxt" styleClass="titSecundarios" text="Año:">
+                  </Label>
+                  <Label fx:id="lblAnio" prefHeight="18.0" prefWidth="390.0" styleClass="descripcion" />
+                  <Label fx:id="lblDirectorTxt" styleClass="titSecundarios" text="Director:">
+                  </Label>
+                  <Label fx:id="lblDirector" prefHeight="18.0" prefWidth="393.0" styleClass="descripcion" />
+                  <Label fx:id="lblDescpTxt" styleClass="titSecundarios" text="Descripción:">
+                  </Label>
+                  <Label fx:id="lblDescripcion" contentDisplay="TOP" prefHeight="76.0" prefWidth="434.0" styleClass="descripcion" wrapText="true" />
+                  <Label fx:id="lblValTxt" styleClass="titSecundarios" text="Valoración:">
+                  </Label>
+                  <Label fx:id="lblVal" prefHeight="34.0" prefWidth="382.0" styleClass="descripcion" />
+                  <Label fx:id="lblPosTxt" styleClass="titSecundarios" text="Poster:">
+                  </Label>
+                  <ImageView fx:id="imagePoster" fitHeight="234.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true" />
+               </children></VBox>
+            <TextField fx:id="buscadorPeliculas" layoutX="89.0" layoutY="50.0" onKeyReleased="#buscadorPeliculas" prefHeight="27.0" prefWidth="353.0" promptText="Ej: Harry Potter..." />
+            <Label layoutX="5.0" layoutY="54.0" prefHeight="18.0" prefWidth="93.0" styleClass="titSecundarios" text="Buscador:">
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
